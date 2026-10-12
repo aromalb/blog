@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="Ella Morrow: honest, no-fluff motivation. New video every Monday at 6am.">
+<title>Ella Morrow Channel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Caveat+Brush&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a dawn-to-daylight scroll — poster-scale condensed headlines, a sunrise band, thumbnails styled like real YouTube cards */
+:root{
+  --bg:#F3F4F8; --surface:#FFFFFF; --ink:#141A2E; --muted:#5B6278;
+  --line:#DDE0EA; --sun:#F2683C; --sun2:#FFB547; --dawn:#2B3A7A;
+  --display:"Archivo","Arial Black",system-ui,sans-serif;
+  --hand:"Caveat Brush","Segoe Print","Bradley Hand",cursive;
+  --body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0C1022; --surface:#151A33; --ink:#EEF0F8; --muted:#9AA1BC; --line:#262C4A; --sun:#FF7A4D; --sun2:#FFC163; --dawn:#8C9EFF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --ink:#EEF0F8; --muted:#9AA1BC; --line:#262C4A; --sun:#FF7A4D; --sun2:#FFC163; --dawn:#8C9EFF; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;padding-inline:20px}
+.wrap{max-width:1120px;margin-inline:auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);font-stretch:125%;font-variation-settings:"wdth" 125;text-transform:uppercase;line-height:1;letter-spacing:-.015em;text-wrap:balance;margin:0}
+.hand{font-family:var(--hand);text-transform:none;font-stretch:100%;font-variation-settings:normal;letter-spacing:0;font-weight:400;display:inline-block;transform:rotate(-4deg);font-size:1.35em;line-height:.8}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--sun)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid var(--ink);transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--sun);border-color:var(--sun);color:#fff}
+.btn.ghost{background:transparent}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-inline:-20px;padding-inline:20px}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{font-family:var(--hand);font-size:32px;line-height:1;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo i{width:14px;height:14px;border-radius:50%;background:linear-gradient(var(--sun2),var(--sun));display:inline-block}
+.links{display:flex;gap:24px;font-weight:500;font-size:15px}
+.links a{text-decoration:none;color:var(--muted)}
+.links a:hover{color:var(--ink)}
+.sub{background:#E5322D;color:#fff;border:0;padding:10px 18px;font-size:14px}
+@media (max-width:760px){.links{display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:center;padding-block:72px 56px}
+.hero h1{font-size:clamp(32px,6.4vw,82px);font-weight:900}
+.hero h1 span{padding-right:.1em;background:linear-gradient(180deg,var(--sun2),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lede{font-size:19px;color:var(--muted);max-width:46ch;margin:24px 0 32px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.feature{min-width:0}
+.thumb{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:14px;overflow:hidden;display:flex;align-items:flex-end;padding:18px;color:#fff;isolation:isolate}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(8,10,25,.55));z-index:-1}
+.thumb .tt{font-family:var(--display);font-stretch:125%;font-variation-settings:"wdth" 125;font-weight:900;text-transform:uppercase;line-height:1;letter-spacing:-.01em;font-size:clamp(20px,2.4vw,30px);max-width:13ch;text-shadow:0 2px 0 rgba(0,0,0,.25)}
+.dur{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.82);color:#fff;font-family:var(--mono);font-size:12px;padding:2px 6px;border-radius:4px}
+.play{position:absolute;top:50%;left:50%;width:68px;height:48px;margin:-24px 0 0 -34px;background:#E5322D;border-radius:14px;display:grid;place-items:center;opacity:.95;transition:transform .2s}
+.play::before{content:"";border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px}
+a.vid{text-decoration:none;display:block}
+a.vid:hover .play{transform:scale(1.1)}
+.meta{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:14px;color:var(--muted)}
+.meta strong{color:var(--ink);font-weight:700;font-size:16px}
+.new{font-family:var(--mono);font-size:11px;background:var(--sun);color:#fff;padding:3px 8px;border-radius:4px;letter-spacing:.08em;position:absolute;top:12px;left:12px}
+
+.g1{background:radial-gradient(circle at 70% 85%,#FFD36B 0 14%,#FF8A4C 30%,#C8456B 55%,#2B2F6E 100%)}
+.g2{background:linear-gradient(160deg,#1E2A5A,#3E5BD9 60%,#9DB3FF)}
+.g3{background:linear-gradient(200deg,#FF9F5A,#E5486A 70%)}
+.g4{background:radial-gradient(circle at 20% 20%,#3A8F7B,#123B3A 80%)}
+.g5{background:linear-gradient(135deg,#2A2140,#7B3FA0 55%,#F2683C)}
+.g6{background:linear-gradient(180deg,#0F1530,#273A7E 60%,#FFB547)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);margin-bottom:96px}
+.stat{padding:26px 8px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat b{font-family:var(--display);font-stretch:125%;font-variation-settings:"wdth" 125;font-size:clamp(28px,3.6vw,44px);font-weight:800;display:block;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:14px;color:var(--muted)}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+section{margin-bottom:104px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.head h2{font-size:clamp(30px,4.4vw,54px);font-weight:900;margin-top:8px}
+.head a{font-weight:700;text-decoration-color:var(--sun);text-underline-offset:5px}
+
+/* videos */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 22px}
+.grid .tt{font-size:clamp(18px,1.8vw,22px)}
+.grid h3{font-family:var(--body);text-transform:none;font-size:16.5px;line-height:1.35;font-weight:700;margin-top:12px}
+.grid .meta{margin-top:4px;font-family:var(--mono);font-size:12px}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+
+/* series */
+.series{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--ink)}
+.s{padding:28px 24px 28px 0;border-right:1px solid var(--line);margin-right:24px}
+.s:last-child{border-right:0;margin-right:0}
+.s h3{font-size:26px;font-weight:800}
+.s .count{font-family:var(--mono);font-size:12px;color:var(--muted);display:block;margin:10px 0 12px}
+.s p{color:var(--muted);margin:0 0 16px;font-size:16px}
+.s a{font-weight:700;text-decoration:none;color:var(--sun)}
+@media (max-width:760px){.series{grid-template-columns:1fr}.s{border-right:0;border-bottom:1px solid var(--line);margin-right:0}}
+
+/* quote band */
+.band{background:linear-gradient(180deg,var(--dawn),#141A2E 85%);color:#fff;margin-inline:-20px;padding:96px 20px;margin-bottom:104px;position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;left:50%;bottom:-260px;width:520px;height:520px;margin-left:-260px;border-radius:50%;background:radial-gradient(circle,var(--sun2),var(--sun) 45%,transparent 70%);opacity:.55}
+.band .wrap{position:relative;text-align:left}
+.band blockquote{margin:0;font-family:var(--display);font-stretch:125%;font-variation-settings:"wdth" 125;text-transform:uppercase;font-weight:900;font-size:clamp(28px,5vw,64px);line-height:1.02;letter-spacing:-.015em;max-width:17ch;text-wrap:balance;transition:opacity .4s}
+.band cite{display:block;margin-top:24px;font-style:normal;font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:#FFC9A8}
+.dots{display:flex;gap:8px;margin-top:28px}
+.dots button{width:30px;height:5px;border:0;border-radius:3px;background:rgba(255,255,255,.3);cursor:pointer;padding:0}
+.dots button[aria-current="true"]{background:var(--sun2)}
+
+/* about */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.portrait{aspect-ratio:4/5;max-width:100%;border-radius:200px 200px 16px 16px;background:radial-gradient(circle at 50% 78%,#FFD36B 0 10%,#FF8A4C 26%,#C8456B 48%,#2B3A7A 80%);position:relative;overflow:hidden}
+.portrait::after{content:"Your photo here";position:absolute;bottom:16px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.8);letter-spacing:.1em;text-transform:uppercase}
+.portrait svg{position:absolute;left:50%;bottom:0;width:62%;transform:translateX(-50%)}
+.about h2{font-size:clamp(28px,3.8vw,46px);font-weight:900;margin:8px 0 20px}
+.about p{color:var(--muted);max-width:56ch;margin:0 0 16px}
+.schedule{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.chip{font-family:var(--mono);font-size:12.5px;border:1px solid var(--line);background:var(--surface);padding:7px 12px;border-radius:999px}
+@media (max-width:760px){.about{grid-template-columns:1fr}.portrait{max-width:360px}}
+
+/* newsletter + contact */
+.split{display:grid;grid-template-columns:1.2fr 1fr;gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:36px;min-width:0}
+.card h2{font-size:clamp(24px,2.8vw,34px);font-weight:900;margin:8px 0 12px}
+.card p{color:var(--muted);margin:0 0 22px}
+form{display:flex;gap:10px;flex-wrap:wrap}
+input[type=email]{flex:1 1 220px;min-width:0;padding:14px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:16px}
+input[type=email]:focus{border-color:var(--sun);outline:none}
+form .btn{border:0;cursor:pointer;font:inherit;font-weight:700}
+.note{font-size:14px;margin-top:12px;color:var(--muted)}
+.ok{color:var(--sun);font-weight:700}
+.mail{font-family:var(--mono);font-size:15px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;gap:10px;align-items:center;overflow-wrap:anywhere}
+.mail button{background:var(--ink);color:var(--bg);border:0;border-radius:8px;padding:8px 12px;font:inherit;font-size:12px;cursor:pointer;flex:none}
+.card ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:8px;font-size:15px;color:var(--muted)}
+.card li::before{content:"→ ";color:var(--sun)}
+@media (max-width:860px){.split{grid-template-columns:1fr}.card{padding:26px}}
+
+footer{border-top:1px solid var(--line);padding-block:32px 48px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+footer .soc{display:flex;gap:20px}
+footer .soc a{text-decoration:none;font-weight:700;color:var(--ink)}
+
+@media (max-width:900px){.hero{grid-template-columns:1fr;gap:36px;padding-block:48px 40px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (prefers-reduced-motion:no-preference){
+  .hero h1{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+  .feature{animation:rise .8s .15s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes rise{from{transform:translateY(18px)}to{transform:none}}
+}
+</style>
+
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top"><i></i>Ella Morrow</a>
+    <div class="links">
+      <a href="#videos">Videos</a><a href="#series">Series</a><a href="#about">About</a><a href="#join">Newsletter</a><a href="#work">Work with me</a>
+    </div>
+    <a class="btn sub" href="https://www.youtube.com/" target="_blank" rel="noopener">Subscribe</a>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+  <header class="hero">
+    <div>
+      <div class="eyebrow">New video every Monday · 6:00 AM</div>
+      <h1>Start before you're <span class="hand">ready.</span></h1>
+      <p class="lede">Honest, no-fluff motivation for people rebuilding their mornings, their habits and their confidence. Real routines, real setbacks, filmed as they happen.</p>
+      <div class="actions">
+        <a class="btn primary" href="#videos">▶ Watch the latest</a>
+        <a class="btn ghost" href="#join">Get the Monday letter</a>
+      </div>
+    </div>
+    <div class="feature">
+      <a class="vid" href="https://www.youtube.com/" target="_blank" rel="noopener">
+        <div class="thumb g1"><span class="new">NEW</span><div class="tt">I woke up at 5am for 30 days</div><span class="play" aria-hidden="true"></span><span class="dur">18:42</span></div>
+        <div class="meta"><strong>Ep. 112 · What actually changed</strong><span>3 days ago</span></div>
+      </a>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b>412K</b><span>subscribers</span></div>
+    <div class="stat"><b>112</b><span>videos published</span></div>
+    <div class="stat"><b>38M</b><span>total views</span></div>
+    <div class="stat"><b>4 yrs</b><span>never missed a Monday</span></div>
+  </div>
+
+  <section id="videos">
+    <div class="head">
+      <div><div class="eyebrow">Latest uploads</div><h2>Watch this week</h2></div>
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener">See all 112 videos →</a>
+    </div>
+    <div class="grid">
+      <a class="vid" href="https://www.youtube.com/" target="_blank" rel="noopener">
+        <div class="thumb g2"><div class="tt">Stop waiting for motivation</div><span class="dur">12:07</span></div>
+        <h3>Discipline beats motivation: the 2-minute rule that got me moving again</h3>
+        <div class="meta"><span>286K views</span><span>1 week ago</span></div>
+      </a>
+      <a class="vid" href="https://www.youtube.com/" target="_blank" rel="noopener">
+        <div class="thumb g3"><div class="tt">My lowest year</div><span class="dur">24:15</span></div>
+        <h3>The year everything fell apart, and the small habits that saved me</h3>
+        <div class="meta"><span>1.2M views</span><span>2 weeks ago</span></div>
+      </a>
+      <a class="vid" href="https://www.youtube.com/" target="_blank" rel="noopener">
+        <div class="thumb g4"><div class="tt">Reset your Sunday</div><span class="dur">15:30</span></div>
+        <h3>My Sunday reset routine for a calm, focused week</h3>
+        <div class="meta"><span>540K views</span><span>3 weeks ago</span></div>
+      </a>
+      <a class="vid" href="https://www.youtube.com/" target="_blank" rel="noopener">
+        <div class="thumb g5"><div class="tt">Quit people pleasing</div><span class="dur">16:58</span></div>
+        <h3>How I learned to say no without feeling guilty</h3>
+        <div class="meta"><span>702K views</span><span>1 month ago</span></div>
+      </a>
+      <a class="vid" href="https://www.youtube.com/" target="_blank" rel="noopener">
+        <div class="thumb g6"><div class="tt">1 hour before bed</div><span class="dur">11:44</span></div>
+        <h3>The night routine that fixed my mornings</h3>
+        <div class="meta"><span>918K views</span><span>1 month ago</span></div>
+      </a>
+      <a class="vid" href="https://www.youtube.com/" target="_blank" rel="noopener">
+        <div class="thumb g1"><div class="tt">Write it down</div><span class="dur">09:21</span></div>
+        <h3>Journaling for beginners: 3 prompts I use every single day</h3>
+        <div class="meta"><span>364K views</span><span>2 months ago</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section id="series">
+    <div class="head"><div><div class="eyebrow">Playlists</div><h2>Pick your series</h2></div></div>
+    <div class="series">
+      <div class="s"><h3>5AM Diaries</h3><span class="count">34 videos · ~9 hrs</span><p>Morning routines, early starts and what happens when the alarm wins.</p><a href="https://www.youtube.com/" target="_blank" rel="noopener">Start episode 1 →</a></div>
+      <div class="s"><h3>Hard Reset</h3><span class="count">21 videos · ~7 hrs</span><p>Starting over after burnout, breakups and bad years. Slow, honest progress.</p><a href="https://www.youtube.com/" target="_blank" rel="noopener">Start episode 1 →</a></div>
+      <div class="s"><h3>Monday Talks</h3><span class="count">57 videos · ~11 hrs</span><p>Ten-minute pep talks to watch with your first coffee of the week.</p><a href="https://www.youtube.com/" target="_blank" rel="noopener">Start episode 1 →</a></div>
+    </div>
+  </section>
+</main>
+
+<div class="band" aria-live="polite">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#FFC9A8">From the channel</div>
+    <blockquote id="q">You don't need a new life. You need a new Tuesday.</blockquote>
+    <cite id="qc">Ep. 087 · Small wins, big year</cite>
+    <div class="dots" id="dots"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section id="about" class="about">
+    <div class="portrait" role="img" aria-label="Portrait placeholder">
+      <svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="70" r="38" fill="rgba(20,26,46,.55)"/><path d="M20 200c4-52 40-82 80-82s76 30 80 82z" fill="rgba(20,26,46,.55)"/></svg>
+    </div>
+    <div>
+      <div class="eyebrow">Hi, I'm Ella</div>
+      <h2>I'm not a guru. I'm just <span class="hand" style="color:var(--sun)">one step ahead.</span></h2>
+      <p>Four years ago I was stuck in a job I hated, sleeping until noon on weekends and promising myself I'd change "next month." I started filming my attempts to get my life together, mostly to keep myself honest.</p>
+      <p>Somehow 400,000 of you showed up. This channel is still the same thing: real routines, real failures, and the small habits that slowly add up to a life you like.</p>
+      <div class="schedule">
+        <span class="chip">Mon · Long video</span><span class="chip">Thu · Shorts</span><span class="chip">1st Sun · Live Q&amp;A</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="split">
+    <div class="card" id="join">
+      <div class="eyebrow">The Monday Letter</div>
+      <h2>One push, every <span class="hand" style="color:var(--sun)">Monday</span></h2>
+      <p>A short email with this week's video, one journaling prompt and one tiny challenge. Read in 3 minutes. Over 60,000 readers.</p>
+      <form id="nl" novalidate>
+        <label for="em" class="sr" style="position:absolute;left:-9999px">Email address</label>
+        <input type="email" id="em" placeholder="you@email.com" autocomplete="email" required>
+        <button class="btn primary" type="submit">Join free</button>
+      </form>
+      <div class="note" id="nlmsg">No spam. Unsubscribe any time.</div>
+    </div>
+    <div class="card" id="work">
+      <div class="eyebrow">Brands &amp; speaking</div>
+      <h2>Work with me</h2>
+      <p>I partner with brands that genuinely help people build better habits.</p>
+      <div class="mail"><span id="addr">hello@ellamorrow.com</span><button type="button" id="copy">Copy</button></div>
+      <ul><li>Integrated YouTube sponsorships</li><li>Workshops &amp; keynote talks</li><li>Media kit available on request</li></ul>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Ella Morrow. Keep going.</span>
+    <div class="soc">
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const quotes=[
+    ["You don't need a new life. You need a new Tuesday.","Ep. 087 · Small wins, big year"],
+    ["Done badly still counts as done.","Ep. 101 · Perfectionism is procrastination"],
+    ["Your future self is watching. Give them something to thank you for.","Ep. 064 · Letters to future me"],
+    ["Rest is part of the plan, not a break from it.","Ep. 095 · Burnout recovery"]
+  ];
+  const q=document.getElementById('q'),qc=document.getElementById('qc'),dots=document.getElementById('dots');
+  let i=0,timer;
+  function show(n){i=n;q.style.opacity=0;setTimeout(()=>{q.textContent=quotes[n][0];qc.textContent=quotes[n][1];q.style.opacity=1},200);
+    [...dots.children].forEach((d,k)=>d.setAttribute('aria-current',k===n))}
+  quotes.forEach((_,k)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Quote '+(k+1));b.setAttribute('aria-current',k===0);b.onclick=()=>{show(k);restart()};dots.appendChild(b)});
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function restart(){clearInterval(timer);if(!still)timer=setInterval(()=>show((i+1)%quotes.length),6000)}
+  restart();
+
+  const f=document.getElementById('nl'),em=document.getElementById('em'),msg=document.getElementById('nlmsg');
+  f.addEventListener('submit',e=>{e.preventDefault();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim())){msg.textContent='Enter a full email address, like you@email.com.';msg.className='note';em.focus();return}
+    msg.innerHTML='<span class="ok">You\'re in.</span> Watch for your first letter next Monday at 6am.';f.reset()});
+
+  const c=document.getElementById('copy'),a=document.getElementById('addr');
+  c.addEventListener('click',()=>{
+    const done=()=>{c.textContent='Copied';setTimeout(()=>c.textContent='Copy',1600)};
+    const sel=()=>{const r=document.createRange();r.selectNodeContents(a);const s=getSelection();s.removeAllRanges();s.addRange(r);c.textContent='Selected'};
+    try{navigator.clipboard.writeText(a.textContent).then(done,sel)}catch(e){sel()}
+  });
+})();
+</script>
+
+</body>
+</html>
